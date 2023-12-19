@@ -22,13 +22,24 @@ function playRound(playerSelection, computerSelection) {
   };
 };
 
-  function game() {
+  function game(playerScore, computerScore) {
+
     if (playRound(playerSelection, computerSelection) == 'You win! You get a point.') {
-        return 'hello.'
-    }
+      for (playerScore = 1; playerScore < 3; playerScore++) {
+        userInput = prompt(`You win this round. You have ${playerScore} points, and the computer has ${computerScore} points.`);
+      };
+    } else if (playRound(playerSelection, computerSelection) == 'The computer won this round. It get\'s a point.') {
+        return computerScore + 1;
+    } else {
+        return "You tied. Neither gets a point.";
+    };
+
+    
   };
 
-  const playerSelection = 'rock'
+  let userInput = prompt("Let's play Rock Paper Scissors.");
+  
+  const playerSelection = userInput.toLowerCase();
   const computerSelection = getComputerChoice();
 
   console.log(playRound(playerSelection, computerSelection));
