@@ -4,34 +4,15 @@ function getComputerChoice() {
     return rPS[Math.floor(Math.random() * rPS.length)];
 };
 
-let userInput = prompt("Let's play Rock, Paper, Scissors.");
-
-  let playerScore = 0;
-  let computerScore = 0;
-
+let userInput = prompt("Let's play Rock Paper Scissors.");
+  
+let playerSelection = userInput.toLowerCase();
 const computerSelection = getComputerChoice();
 
-function game(playerScore, computerScore) {
+let playerScore = 0;
+let computerScore = 0;
 
-  let playerSelection = userInput;
-
-  //This is theoretically a full game.
- for (playerScore >= 0 && computerScore >= 0; playerScore == 3 || computerScore == 3;) {
-
-  if (playRound(playerSelection, computerSelection) == 2) {
-    playerScore++;
-    playerSelection = prompt(`You won this round! Current Score: You:${playerScore}, Computer:${computerScore}.`)
-  } else if (playRound(playerSelection, computerSelection) == 1) {
-    computerScore++;
-    playerSelection = prompt(`You lose this round. Current Score: You:${playerScore}, Computer:${computerScore}.`)
-  } else if (playRound(playerSelection, computerSelection) == 0) {
-    playerSelection = prompt(`You tied this round. Current Score: You:${playerScore}, Computer:${computerScore}`)
-  };
-
-};
-
-  //This is the function for 1 round of RPS
-  function playRound(playerSelection, computerSelection) {
+function playRound(playerSelection, computerSelection) {
     if (
         playerSelection == 'rock' && computerSelection == 'scissors' ||
         playerSelection == 'scissors' && computerSelection == 'paper' ||
@@ -51,8 +32,20 @@ function game(playerScore, computerScore) {
      ) {
         return 0;
     } else {
-        return "Please enter either Rock, Paper, or Scissors.";
+        playerSelection = prompt("Please enter either Rock, Paper, or Scissors.")
     };
 };
 
-};
+function game() {
+    if (playRound(playerSelection, computerSelection) == 2) {
+      playerScore++;
+      playerSelection = prompt(`You won this round! Current Score: You:${playerScore}, Computer:${computerScore}`);
+    } else if (playRound(playerSelection, computerSelection) == 1) {
+      computerScore++;
+      playerSelection = prompt(`You lose this round. Current Score: You:${playerScore}, Computer:${computerScore}`)
+    } else if (playRound(playerSelection, computerSelection) == 0) {
+      playerSelection = prompt(`You tied this round. Current Score: You:${playerScore}, Computer:${computerScore}`);
+    };
+ };
+
+  console.log(game());
