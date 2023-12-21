@@ -9,19 +9,23 @@ let computerScore = 0;
 
 function game() {
 
-  userInput = prompt("Please enter either Rock, Paper, or Scissors below.");
+  userInput = prompt("Let's play Rock-Paper-Scissors! Best 3 out of 5. Please enter one of the three below.");
 
    for (userInput == 'rock' || userInput == 'paper' || userInput == 'scissors';;) {
 
     computerChoice = getComputerChoice();
     
-    playRound(userInput, computerChoice);
+    playRound(userInput, computerChoice); 
 
-    if (playerScore > 2) {
-      alert("Congrats! You've won this game.");
+    if (playRound(userInput, computerChoice) == 2 && playerScore == 2) {
+      playerScore++;
+      alert(`Congrats! You've won this game. Final Score: You: ${playerScore}, Computer: ${computerScore}.
+       If you wan't to play again, please refresh the page.`);
       break;
-    } else if(computerScore > 2) {
-      alert("Sorry. You've lost this game.")
+    } else if(playRound(userInput, computerChoice) == 1 && computerScore == 2) {
+      computerScore++;
+      alert(`Sorry. You've lost this game. Final Score: You; ${playerScore}, Computer: ${computerScore}.
+       If you'd like to try again, please refresh the page.`);
       break;
     } else if (playRound(userInput, computerChoice) == 2) {
       playerScore++;
@@ -37,32 +41,6 @@ function game() {
     
   };
 };
-
-
-
-
-
-
-
-/*function game() {
-  
-  let playerSelection = prompt("Let's play Rock Paper Scissors.");
-  
-  if (playerScore < 3 && computerScore < 3) {
-    if (playRound() == 2) {
-      playerScore++;
-      playerSelection = prompt(`You won this round! Current Score: You:${playerScore}, Computer:${computerScore}`);
-    } else if (playRound() == 1) {
-      computerScore++;
-      playerSelection = prompt(`You lose this round. Current Score: You:${playerScore}, Computer:${computerScore}`)
-    } else if (playRound() == 0) {
-      playerSelection = prompt(`You tied this round. Current Score: You:${playerScore}, Computer:${computerScore}`);
-    };
-  } else if (playerScore == 3 && computerScore < 3) {
-    return "Congrats! You've won!"
-  } else if (playerScore < 3 && computerScore == 3) {
-    return "Sorry, you lose. Refresh to play again."
-  }; */
 
 function playRound(playerSelection, computerSelection) {
     if (
@@ -83,10 +61,5 @@ function playRound(playerSelection, computerSelection) {
         playerSelection == 'paper' && computerSelection == 'paper'
      ) {
         return 0;
-    } else {
-        //playerSelection = prompt("Please enter either Rock, Paper, or Scissors.")
-    };
+    } else;
   };
-//};
-
-//console.log(gameTest());
