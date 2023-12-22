@@ -13,6 +13,10 @@ function game() {
 
    for (;playerScore < 3 && computerScore < 3;) {
 
+    if (userInput === null) {
+      return;
+    };
+
     userInput = userInput.toLowerCase();
     computerChoice = getComputerChoice();
     
