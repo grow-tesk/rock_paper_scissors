@@ -11,8 +11,9 @@ function game() {
 
   userInput = prompt("Let's play Rock-Paper-Scissors! Best 3 out of 5. Please enter one of the three below.");
 
-   for (userInput == 'rock' || userInput == 'paper' || userInput == 'scissors';;) {
+   for (;playerScore < 3 && computerScore < 3;) {
 
+    userInput = userInput.toLowerCase();
     computerChoice = getComputerChoice();
     
     playRound(userInput, computerChoice); 
@@ -21,12 +22,10 @@ function game() {
       playerScore++;
       alert(`Congrats! You've won this game. Final Score: You: ${playerScore}, Computer: ${computerScore}.
        If you wan't to play again, please refresh the page.`);
-      break;
     } else if(playRound(userInput, computerChoice) == 1 && computerScore == 2) {
       computerScore++;
       alert(`Sorry. You've lost this game. Final Score: You; ${playerScore}, Computer: ${computerScore}.
        If you'd like to try again, please refresh the page.`);
-      break;
     } else if (playRound(userInput, computerChoice) == 2) {
       playerScore++;
       userInput = prompt(`You won this round! Current Score: You:${playerScore}, Computer:${computerScore}`);
@@ -38,7 +37,6 @@ function game() {
     } else {
       userInput = prompt("Please enter either rock, paper, or scissors.");
     };
-    
   };
 };
 
