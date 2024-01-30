@@ -7,42 +7,38 @@ function getComputerChoice() {
 let playerScore = 0;
 let computerScore = 0;
 
-function game() {
+function game(userInput) {
 
-  userInput = prompt("Let's play Rock-Paper-Scissors! Best 3 out of 5. Please enter one of the three below.");
-
-   for (;playerScore < 3 && computerScore < 3;) {
-
-    if (userInput === null) {
-      return;
-    };
-
-    userInput = userInput.toLowerCase();
+  let score = document.querySelector('div');
+  
+   for (;playerScore < 5 && computerScore < 5;) {
+     
     computerChoice = getComputerChoice();
-    
-    playRound(userInput, computerChoice); 
+  
+   playRound(userInput, computerChoice); 
 
-    if (playRound(userInput, computerChoice) == 2 && playerScore == 2) {
+    if (playRound(userInput, computerChoice) == 'win' && playerScore == 4) {
       playerScore++;
-      alert(`Congrats! You've won this game. Final Score: You: ${playerScore}, Computer: ${computerScore}.
-       If you wan't to play again, please refresh the page.`);
-    } else if(playRound(userInput, computerChoice) == 1 && computerScore == 2) {
+      score.textContent = `You won this round! Score: You: ${playerScore}, Computer: ${computerScore}. Congrats, you win! Refresh to play again.`;
+      break;
+    } else if(playRound(userInput, computerChoice) == 'lose' && computerScore == 4) {
       computerScore++;
-      alert(`Sorry. You've lost this game. Final Score: You; ${playerScore}, Computer: ${computerScore}.
-       If you'd like to try again, please refresh the page.`);
-    } else if (playRound(userInput, computerChoice) == 2) {
+      score.textContent = `You lost this round. Score: You: ${playerScore}, Computer: ${computerScore}. Sorry, you lost this game. Refresh to try again.`;
+      break;
+    } else if (playRound(userInput, computerChoice) == 'win') {
       playerScore++;
-      userInput = prompt(`You won this round! Current Score: You:${playerScore}, Computer:${computerScore}`);
-    } else if (playRound(userInput, computerChoice) == 1) {
+      score.textContent = `You won this round! Score: You: ${playerScore}, Computer: ${computerScore}`;
+      break;
+    } else if (playRound(userInput, computerChoice) == 'lose') {
       computerScore++;
-      userInput = prompt(`You lose this round. Current Score: You:${playerScore}, Computer:${computerScore}`);
-    } else if (playRound(userInput, computerChoice) == 0) {
-      userInput = prompt(`You tied this round. Current Score: You:${playerScore}, Computer:${computerScore}`);
-    } else {
-      userInput = prompt("Please enter either rock, paper, or scissors.");
-    };
+      score.textContent = `You lost this round. Score: You: ${playerScore}, Computer: ${computerScore}`;
+      break;
+    } else if (playRound(userInput, computerChoice) == 'tie') {
+      score.textContent = `You tied, try again. Score: You: ${playerScore}, Computer: ${computerScore}`;
+      break;
+    }; 
   };
-};
+}; 
 
 function playRound(playerSelection, computerSelection) {
     if (
@@ -50,18 +46,20 @@ function playRound(playerSelection, computerSelection) {
         playerSelection == 'scissors' && computerSelection == 'paper' ||
         playerSelection == 'paper' && computerSelection == 'rock'
     ) {
-        return 2;
+        return 'win';
     } else if (
         playerSelection == 'rock' && computerSelection == 'paper' ||
         playerSelection == 'paper' && computerSelection == 'scissors' ||
         playerSelection == 'scissors' && computerSelection == 'rock'
     ) {
-         return 1;
+         return 'lose';
     } else if (
         playerSelection == 'rock' && computerSelection == 'rock' ||
         playerSelection == 'scissors' && computerSelection == 'scissors' ||
         playerSelection == 'paper' && computerSelection == 'paper'
      ) {
-        return 0;
+        return 'tie';
     } else;
-  };
+  }; 
+
+  
